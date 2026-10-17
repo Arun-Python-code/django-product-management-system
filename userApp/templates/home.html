@@ -1,0 +1,92 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <h1>Product Manager</h1>
+        <a href="{% url 'Login_page' %}">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+
+            <div class="panel-header">
+                <h2>Product List</h2>
+
+                <a href="{% url 'Addproduct' %}" class="add-btn">
+                    + Add Product
+                </a>
+            </div>
+
+            <div class="table-wrap">
+                  {% csrf_token %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Product Category</th>
+                            <th>Product Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="productTable">
+                        <!-- Products loaded using JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Product Popup -->
+    <div id="productPopup" class="popup-overlay">
+
+        <div class="popup-box">
+
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeProductPopup()"
+                aria-label="Close popup"
+            >
+                &times;
+            </button>
+
+            <h3>Product Actions</h3>
+
+            <button
+                type="button"
+                id="updateBtn"
+                class="update-btn"
+            >
+                Update
+            </button>
+
+            <button
+                type="button"
+                id="deleteBtn"
+                class="delete-btn"
+            >
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/home.js' %}"></script>
+
+</body>
+</html>
