@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Define responsive page metadata and load product-list styles. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,11 +14,13 @@
 
 <body>
 
+    <!-- Top navigation provides the app title and current logout-page link. -->
     <div class="navbar">
         <h1>Product Manager</h1>
         <a href="{% url 'Login_page' %}">Logout</a>
     </div>
 
+    <!-- Main panel contains the product table populated by JavaScript. -->
     <div class="container">
         <div class="panel">
 
@@ -30,7 +33,9 @@
             </div>
 
             <div class="table-wrap">
+                  <!-- Provide a CSRF token for product deletion requests. -->
                   {% csrf_token %}
+                <!-- Display column headings and a dynamic product-table body. -->
                 <table>
                     <thead>
                         <tr>
@@ -42,7 +47,7 @@
                     </thead>
 
                     <tbody id="productTable">
-                        <!-- Products loaded using JavaScript -->
+                        <!-- JavaScript inserts product rows or the empty-list message. -->
                     </tbody>
                 </table>
             </div>
@@ -50,7 +55,7 @@
         </div>
     </div>
 
-    <!-- Product Popup -->
+    <!-- Popup offers edit and delete actions for the product selected in the table. -->
     <div id="productPopup" class="popup-overlay">
 
         <div class="popup-box">
@@ -61,6 +66,7 @@
                 onclick="closeProductPopup()"
                 aria-label="Close popup"
             >
+                <!-- Close action hides the popup using the home-page script. -->
                 &times;
             </button>
 
@@ -86,6 +92,7 @@
 
     </div>
 
+    <!-- Load product-list, popup, and deletion behavior after the page markup. -->
     <script src="{% static 'js/home.js' %}"></script>
 
 </body>

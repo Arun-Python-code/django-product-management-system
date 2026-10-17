@@ -11,6 +11,8 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+# Select the settings module used by ASGI application servers.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'userApp.settings')
 
+# Expose Django's ASGI callable to the deployment server.
 application = get_asgi_application()

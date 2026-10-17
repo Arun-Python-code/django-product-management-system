@@ -1,21 +1,22 @@
+// Read the hidden CSRF token used to protect product write requests.
 function CSRFToken() {
   const csrfInput = document.querySelector('[name="csrfmiddlewaretoken"]');
 
   return csrfInput ? csrfInput.value : "";
 }
 
-// Get button element
+// Find the submit button and product ID used to determine the form's mode.
 const submitButton = document.querySelector("#productForm .btn");
 
-// Get product ID from URL
+// An id query parameter means the form is editing an existing product.
 const productId = new URLSearchParams(window.location.search).get("id");
 
-// Change button text based on Create or Update mode
+// Label the submit button to match whether the form creates or updates.
 if (submitButton) {
   submitButton.textContent = productId ? "Update Product" : "Create Product";
 }
 
-// Load product details when updating
+// Retrieve existing values and fill the form when an ID is present.
 if (productId) {
   fetch(`/getproduct/${productId}/`)
     .then((response) => {
@@ -26,6 +27,7 @@ if (productId) {
       return response.json();
     })
     .then((data) => {
+      // Populate the fields with the product values returned by the API.
       document.getElementById("name").value = data.product_name;
 
       document.getElementById("category").value = data.product_category;
@@ -37,7 +39,7 @@ if (productId) {
     });
 }
 
-// Common form submit handler
+// Use one submit handler for both creation and partial updates.
 document
   .getElementById("productForm")
   .addEventListener("submit", function (event) {
@@ -51,11 +53,12 @@ document
       product_price: document.getElementById("price").value,
     };
 
-    // Select API and method based on mode
+    // Choose the endpoint and HTTP method based on create or update mode.
     const url = productId ? `/updateproduct/${productId}/` : "/createproduct/";
 
     const method = productId ? "PATCH" : "POST";
 
+    // Send product fields as JSON with the CSRF token required for writes.
     fetch(url, {
       method: method,
       headers: {
@@ -64,6 +67,7 @@ document
       },
       body: JSON.stringify(data),
     })
+      // Parse the API response and route non-success statuses to the error handler.
       .then(async (response) => {
         const responseData = await response.json();
 
@@ -76,6 +80,7 @@ document
       .then((responseData) => {
         console.log("Response:", responseData);
 
+        // Return to the list after an update; clear the form after a creation.
         if (productId) {
           alert("Product updated successfully!");
           window.location.href = "/home/";

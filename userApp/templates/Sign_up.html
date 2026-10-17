@@ -2,18 +2,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Set document metadata and load the shared authentication-page stylesheet. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+  <!-- Centered account-registration card and form. -->
   <div class="card">
     <h2>Create Account</h2>
     <p class="subtitle">Sign up to get started</p>
 
     <form id="signIn">
+        <!-- Django renders the CSRF token required by the signup POST request. -->
         {% csrf_token %}
+      <!-- Collect the account name, email, password, and confirmation. -->
       <div class="form-group">
         <label for="username">Full Name</label>
         <input type="text" id="username" name="username" placeholder="Your name" required>
@@ -35,9 +39,11 @@
       </div>
 
       <button type="submit" class="btn">Sign Up</button>
+      <!-- Signup JavaScript writes validation and request results here. -->
       <p id="result"></p>
     </form>
 
+    <!-- Link to login for existing accounts, then load signup behavior. -->
     <p class="switch">Already have an account? <a href="{% url 'Login_page' %}">Login</a></p>
   </div>
   <script src="{% static 'js/sign.js' %}"></script>

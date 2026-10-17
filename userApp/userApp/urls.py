@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 import task
 
+# Send Django admin requests to its built-in site and all other paths to the app.
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('task.urls'))

@@ -1,4 +1,5 @@
 
+// Read the hidden CSRF form field for the account-creation POST request.
 function getCSRFToken() {
     const csrfInput = document.querySelector(
         '[name="csrfmiddlewaretoken"]'
@@ -7,6 +8,7 @@ function getCSRFToken() {
     return csrfInput ? csrfInput.value : "";
 }
 
+// Validate and submit the signup form without navigating through a page reload.
 document.getElementById("signIn").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -16,7 +18,7 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
     const confirmPassword = document.getElementById("confirm").value;
     const result = document.getElementById("result");
 
-    // Check password confirmation
+    // Stop locally if the two password entries do not match.
     if (password !== confirmPassword) {
         result.textContent = "Passwords do not match.";
         return;
@@ -28,6 +30,7 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
         password: password
     };
 
+    // Send registration fields as JSON and include Django's CSRF header.
     fetch("/createuser/", {
         method: "POST",
         headers: {
@@ -36,6 +39,7 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
         },
         body: JSON.stringify(data)
     })
+    // Read the API result and route non-success status codes into the error handler.
     .then(async response => {
         const responseData = await response.json();
 
@@ -50,6 +54,7 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
     .then(data => {
         console.log(data);
 
+        // Show success, clear the form, and then open the login page.
         if (data.message) {
             result.textContent = "Signup successful! Please login.";
             document.getElementById("signIn").reset();
@@ -60,6 +65,7 @@ document.getElementById("signIn").addEventListener("submit", function (event) {
             }, 1000);
         }
     })
+    // Log technical details and show a simple error message in the page.
     .catch(error => {
         console.error("Signup error:", error);
         result.textContent = "Signup failed. Check your details and try again.";

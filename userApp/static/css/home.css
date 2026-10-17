@@ -1,5 +1,7 @@
+/* Normalize element sizing and spacing across the product-list page. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Set the page's default typography and neutral background colors. */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: #f3f4f6;
@@ -7,6 +9,7 @@ body {
 }
 
 /* ---------- Navbar ---------- */
+/* Arrange the app title and navigation link across the top bar. */
 .navbar {
   background: #4f46e5;
   color: #fff;
@@ -20,8 +23,10 @@ body {
 .navbar a:hover { text-decoration: underline; }
 
 /* ---------- Layout ---------- */
+/* Constrain the content width and center it with page-side padding. */
 .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
 
+/* Present the list in a white panel with rounded corners and a subtle shadow. */
 .panel {
   background: #fff;
   border-radius: 12px;
@@ -39,6 +44,7 @@ body {
 }
 .panel-header h2 { font-size: 18px; }
 
+/* Style the add-product link as a prominent button. */
 .add-btn {
   background: #4f46e5;
   color: #fff;
@@ -52,10 +58,13 @@ body {
 .add-btn:hover { background: #4338ca; }
 
 /* ---------- Table ---------- */
+/* Allow wide table content to scroll horizontally rather than overflow. */
 .table-wrap { overflow-x: auto;}
 
+/* Collapse adjacent borders for a compact table layout. */
 table { width: 100%; border-collapse: collapse; }
 
+/* Align cell content and separate rows with light borders. */
 th, td {
   text-align: left;
   padding: 12px 14px;
@@ -70,9 +79,11 @@ thead th {
 }
 
 tbody tr:nth-child(even) { background: #f9fafb; }
+/* Use alternating row color and hover feedback to improve scanning. */
 tbody tr:hover { background: #eef2ff; }
 
 /* Product name added by JS */
+/* Make dynamically inserted product names look and behave like actions. */
 .product-name {
   color: #4f46e5;
   font-weight: 600;
@@ -81,6 +92,7 @@ tbody tr:hover { background: #eef2ff; }
 .product-name:hover { text-decoration: underline; }
 
 /* ---------- Popup ---------- */
+/* Cover the viewport with a hidden overlay that JavaScript displays as flex. */
 .popup-overlay {
   display: none;              /* JS sets display: flex */
   position: fixed;
@@ -91,6 +103,7 @@ tbody tr:hover { background: #eef2ff; }
   z-index: 100;
 }
 
+/* Center the popup content in a compact, elevated dialog box. */
 .popup-box {
   position: relative;
   background: #fff;
@@ -103,6 +116,7 @@ tbody tr:hover { background: #eef2ff; }
 }
 .popup-box h3 { margin-bottom: 18px; }
 
+/* Position the close control inside the top-right corner of the popup. */
 .close-btn {
   position: absolute;
   top: 8px;
@@ -116,6 +130,7 @@ tbody tr:hover { background: #eef2ff; }
 }
 .close-btn:hover { color: #111827; }
 
+/* Stack popup actions at full width with distinct update and delete colors. */
 .update-btn,
 .delete-btn {
   display: block;

@@ -1,5 +1,7 @@
+/* Apply consistent box sizing and remove browser-default spacing. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Center the authentication card over a full-height gradient background. */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   min-height: 100vh;
@@ -10,6 +12,7 @@ body {
   padding: 20px;
 }
 
+/* Give login and signup forms a bounded white card with padding and elevation. */
 .card {
   background: #fff;
   width: 100%;
@@ -19,10 +22,12 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Center the card heading and soften the supporting text. */
 .card h2 { text-align: center; margin-bottom: 6px; color: #1f2937; }
 .card .subtitle { text-align: center; color: #6b7280; font-size: 14px; margin-bottom: 20px; }
 
 /* ---------- Form ---------- */
+/* Separate each label-and-input group and align its label above the field. */
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; font-size: 14px; margin-bottom: 6px; color: #374151; }
 .form-group input {
@@ -33,8 +38,10 @@ body {
   font-size: 15px;
   outline: none;
 }
+/* Highlight the active input to make keyboard focus visible. */
 .form-group input:focus { border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
 
+/* Style the full-width primary action and provide a darker hover state. */
 .btn {
   width: 100%;
   padding: 12px;
@@ -49,6 +56,7 @@ body {
 }
 .btn:hover { background: #4338ca; }
 
+/* Center the account-switch link beneath the form. */
 .switch { text-align: center; margin-top: 18px; font-size: 14px; color: #6b7280; }
 .switch a { color: #4f46e5; text-decoration: none; font-weight: 600; }
 .switch a:hover { text-decoration: underline; }

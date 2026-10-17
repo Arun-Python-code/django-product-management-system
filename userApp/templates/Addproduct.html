@@ -2,25 +2,30 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Set responsive metadata and load the product-form stylesheet. -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Product</title>
     <link rel="stylesheet" href="{% static 'css/Addproduct.css' %}" />
   </head>
   <body>
+    <!-- Navigation returns to the product list. -->
     <div class="navbar">
       <h1>Product Manager</h1>
       <a href="{% url 'Home_page' %}">View Products</a>
     </div>
 
+    <!-- Form card is used for product creation and, when an ID is in the URL, editing. -->
     <div class="container">
       <div class="card">
         <h2>Create Product</h2>
 
         <form id="productForm">
             
+            <!-- Django renders a token for the form's POST or PATCH fetch request. -->
             {% csrf_token %}
 
+          <!-- Product name, category, and price are read by the form script. -->
           <div class="form-group">
             <label for="name">Product Name</label>
             <input
@@ -58,13 +63,16 @@
           </div>
 
           <div class="btn-row">
+            <!-- Submit saves the product; cancel follows its configured link. -->
             <button type="submit" class="btn btn-primary">Create</button>
             <a href="products.html" class="btn btn-cancel">Cancel</a>
           </div>
+          <!-- The product script can use this element for form feedback. -->
           <p id="result"></p>
         </form>
       </div>
     </div>
+    <!-- Load the script that selects create/update mode and submits the form. -->
     <script src="{% static 'js/addproducts.js'  %}"></script>
   </body>
 </html>

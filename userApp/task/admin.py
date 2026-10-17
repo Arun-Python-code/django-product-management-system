@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-# Register your models here.
+# This module currently has no model registrations for the Django admin site.

@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# Create your tests here.
+# Add application tests here; this module currently defines no test cases.
